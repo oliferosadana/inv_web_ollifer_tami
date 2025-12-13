@@ -1,0 +1,66 @@
+{
+    "hero": {
+        "title": "Ollifer & Tami",
+        "subtitle": "We Are Getting Married",
+        "date": "Kamis, 15 Januari 2026",
+        "weddingDateIso": "2026-01-15T15:00",
+        "music": "https://cdn.pixabay.com/download/audio/2022/02/07/audio_1822e4270f.mp3?filename=wedding-piano-11111.mp3"
+    },
+    "couple": {
+        "groom_name": "Ollifer Megi Osadana",
+        "groom_parents": "Putra dari Bpk. Hartoyo & Ibu Multihawati",
+        "groom_img": "assets/uploaded/1765573917219-fotoolip.png",
+        "bride_name": "Nindya Agustika Utamia",
+        "bride_parents": "Putri dari Bpk. Padillah & Ibu Ida",
+        "bride_img": "assets/uploaded/1765573927898-fototami.png"
+    },
+    "event": {
+        "akad_title": "Akad Nikah",
+        "akad_time": "08:00 - 10:00 WIB",
+        "akad_date": "Sabtu, 28 Desember 2025",
+        "akad_location": "Katta Coffee & Kitchen",
+        "akad_address": "",
+        "akad_map_link": "",
+        "resepsi_title": "Resepsi",
+        "resepsi_time": "11:00 - 13:00 WIB",
+        "resepsi_date": "Sabtu, 28 Desember 2025",
+        "resepsi_location": "Katta Coffee & Kitchen",
+        "resepsi_address": "",
+        "resepsi_map_link": ""
+    },
+    "gallery": [
+        "assets/uploaded/1765571098254-fotosayaaa.png",
+        "assets/uploaded/1765571113036-fotosayaaa.JPG"
+    ],
+    "rsvp": {
+        "bank_name": "Mandiri",
+        "account_number": "1490015399415",
+        "account_name": "Ollifer Megi Osadana",
+        "ewallet_name": "Dana",
+        "ewallet_number": "081253439968",
+        "ewallet_owner": "Ollifer Megi Osadana"
+    },
+    "guests": [
+        {
+            "name": "toto",
+            "phone": "6281253439968"
+        }
+    ],
+    "rsvp_responses": [
+        {
+            "name": "toto",
+            "status": "Ragu-ragu",
+            "count": "1",
+            "message": "Selamat menempuh hidup baru",
+            "date": "2025-12-12T22:40:13.871Z"
+        }
+    ],
+    "theme": {
+        "primary_color": "#8da399",
+        "secondary_color": "#c5a17f",
+        "bg_color": "#fafafa",
+        "font_body": "Open Sans",
+        "font_heading": "Playfair Display",
+        "font_signature": "Great Vibes"
+    }
+}

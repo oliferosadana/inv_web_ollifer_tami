@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: undangan-app
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+    volumes:
+      - ./content.json:/app/content.json
+      - ./assets/uploaded:/app/assets/uploaded
