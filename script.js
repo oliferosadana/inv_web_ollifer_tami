@@ -308,6 +308,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Copy E-Wallet Logic
+    const btnCopyEwallet = document.getElementById('btn_copy_ewallet');
+    if (btnCopyEwallet) {
+        btnCopyEwallet.addEventListener('click', () => {
+            const ewalletNum = document.getElementById('ewallet_number_text').innerText;
+            navigator.clipboard.writeText(ewalletNum).then(() => {
+                const originalText = btnCopyEwallet.innerHTML;
+                btnCopyEwallet.innerHTML = '<i class="fas fa-check"></i> Disalin!';
+                setTimeout(() => {
+                    btnCopyEwallet.innerHTML = originalText;
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy', err);
+                alert('Gagal menyalin, silakan salin manual.');
+            });
+        });
+    }
+
     // Active Navigation
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.bottom-nav a');
