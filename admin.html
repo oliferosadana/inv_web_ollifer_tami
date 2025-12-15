@@ -169,6 +169,8 @@
         <a class="nav-item" onclick="showTab('rsvp')"><i class="fas fa-gift"></i> Gift & RSVP</a>
         <a class="nav-item" onclick="showTab('guests')"><i class="fas fa-users"></i> Tamu & Link</a>
         <a class="nav-item" onclick="showTab('rsvp-data')"><i class="fas fa-clipboard-list"></i> Data RSVP</a>
+        <a class="nav-item" onclick="showTab('rsvp-data')"><i class="fas fa-clipboard-list"></i> Data RSVP</a>
+        <a class="nav-item" onclick="showTab('seo')"><i class="fas fa-share-alt"></i> Link Preview</a>
         <a class="nav-item" onclick="showTab('theme')"><i class="fas fa-palette"></i> Theme</a>
         <div style="margin-top: auto; padding: 20px;">
             <button onclick="logout()" style="background: #e74c3c; width: 100%;">Logout</button>
@@ -196,214 +198,240 @@
                 <label>Wedding Date (ISO for Countdown)</label>
                 <input type="datetime-local" id="hero_weddingDateIso">
             </div>
-            <label>Background Music Settings</label>
-            <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; border: 1px solid #ddd;">
-                <audio id="music_preview" controls style="width: 100%; margin-bottom: 10px;"></audio>
+            <div class="form-group">
+                <label>Background Music Settings</label>
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; border: 1px solid #ddd;">
+                    <audio id="music_preview" controls style="width: 100%; margin-bottom: 10px;"></audio>
 
-                <label style="font-size: 13px; margin-top: 10px;">Select File</label>
-                <input type="file" id="music_upload" accept="audio/*" onchange="uploadMusic()">
+                    <label style="font-size: 13px; margin-top: 10px;">Select File</label>
+                    <input type="file" id="music_upload" accept="audio/*" onchange="uploadMusic()">
 
-                <label style="font-size: 13px; margin-top: 10px;">Or Paste URL</label>
-                <input type="text" id="music_url" placeholder="https://example.com/song.mp3"
-                    onchange="updateMusicPreviewFromUrl()">
+                    <label style="font-size: 13px; margin-top: 10px;">Or Paste URL</label>
+                    <input type="text" id="music_url" placeholder="https://example.com/song.mp3"
+                        onchange="updateMusicPreviewFromUrl()">
 
-                <label style="font-size: 13px; margin-top: 10px;">Volume (<span id="vol_display">50%</span>)</label>
-                <input type="range" id="music_volume" min="0" max="1" step="0.1" value="0.5" style="width: 100%;"
-                    oninput="updateVolumeLabel()">
+                    <label style="font-size: 13px; margin-top: 10px;">Volume (<span id="vol_display">50%</span>)</label>
+                    <input type="range" id="music_volume" min="0" max="1" step="0.1" value="0.5" style="width: 100%;"
+                        oninput="updateVolumeLabel()">
+                </div>
+            </div>
+            <button onclick="saveContent()">Save Changes</button>
+        </div>
+
+        <!-- Couple Tab -->
+        <div id="tab-couple" class="card">
+            <h3>Groom</h3>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" id="groom_name">
+            </div>
+            <div class="form-group">
+                <label>Parents</label>
+                <input type="text" id="groom_parents">
+            </div>
+            <div class="form-group">
+                <label>Photo</label>
+                <img id="groom_preview" class="preview-img">
+                <input type="file" id="groom_upload" onchange="uploadCouplePhoto('groom')">
+            </div>
+
+            <h3 style="margin-top: 30px;">Bride</h3>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" id="bride_name">
+            </div>
+            <div class="form-group">
+                <label>Parents</label>
+                <input type="text" id="bride_parents">
+            </div>
+            <div class="form-group">
+                <label>Photo</label>
+                <img id="bride_preview" class="preview-img">
+                <input type="file" id="bride_upload" onchange="uploadCouplePhoto('bride')">
+            </div>
+            <button onclick="saveContent()">Save Changes</button>
+        </div>
+
+        <!-- Event Tab -->
+        <div id="tab-event" class="card">
+            <h3>Akad Nikah</h3>
+            <div class="form-group"><label>Time</label><input type="text" id="akad_time"></div>
+            <div class="form-group"><label>Location</label><input type="text" id="akad_location"></div>
+            <div class="form-group"><label>Address</label><input type="text" id="akad_address"></div>
+            <div class="form-group"><label>Google Maps Link</label><input type="text" id="akad_map_link"></div>
+
+            <h3 style="margin-top: 30px;">Resepsi</h3>
+            <div class="form-group"><label>Time</label><input type="text" id="resepsi_time"></div>
+            <div class="form-group"><label>Location</label><input type="text" id="resepsi_location"></div>
+            <div class="form-group"><label>Address</label><input type="text" id="resepsi_address"></div>
+            <div class="form-group"><label>Google Maps Link</label><input type="text" id="resepsi_map_link"></div>
+            <button onclick="saveContent()">Save Changes</button>
+        </div>
+
+        <!-- Gallery -->
+        <div id="tab-gallery" class="card">
+            <h3>Gallery Images</h3>
+            <div class="form-group">
+                <label>Add New Photo</label>
+                <input type="file" id="galleryUpload">
+                <button onclick="addToGallery()">+ Add to Gallery</button>
+            </div>
+            <div id="galleryGrid" style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px;">
+                <!-- Gallery items will go here -->
             </div>
         </div>
-        <button onclick="saveContent()">Save Changes</button>
-    </div>
 
-    <!-- Couple Tab -->
-    <div id="tab-couple" class="card">
-        <h3>Groom</h3>
-        <div class="form-group">
-            <label>Name</label>
-            <input type="text" id="groom_name">
-        </div>
-        <div class="form-group">
-            <label>Parents</label>
-            <input type="text" id="groom_parents">
-        </div>
-        <div class="form-group">
-            <label>Photo</label>
-            <img id="groom_preview" class="preview-img">
-            <input type="file" id="groom_upload" onchange="uploadCouplePhoto('groom')">
+        <!-- RSVP -->
+        <div id="tab-rsvp" class="card">
+            <h3>Bank Info</h3>
+            <div class="form-group"><label>Bank Name</label><input type="text" id="bank_name"></div>
+            <div class="form-group"><label>Account Number</label><input type="text" id="account_number"></div>
+            <div class="form-group"><label>Account Name</label><input type="text" id="account_name"></div>
+
+            <h3 style="margin-top: 20px;">E-Wallet Info</h3>
+            <div class="form-group"><label>E-Wallet Name</label><input type="text" id="ewallet_name"
+                    placeholder="Ex: GoPay, Dana"></div>
+            <div class="form-group"><label>Number</label><input type="text" id="ewallet_number"></div>
+            <div class="form-group"><label>Owner Name</label><input type="text" id="ewallet_owner"></div>
+            <button onclick="saveContent()">Save Changes</button>
         </div>
 
-        <h3 style="margin-top: 30px;">Bride</h3>
-        <div class="form-group">
-            <label>Name</label>
-            <input type="text" id="bride_name">
+        <!-- Guests Tab -->
+        <div id="tab-guests" class="card">
+            <h3>Guest List Manager</h3>
+            <div class="form-group">
+                <textarea id="guestBulkInput" rows="5"
+                    placeholder="Paste Name, Phone (one per line)&#10;Ex:&#10;Budi, 08123456789&#10;Siti, 08987654321"></textarea>
+                <button onclick="addGuests()" style="margin-top: 10px;">Add Guests</button>
+            </div>
+            <hr>
+            <table class="guest-table" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                <thead>
+                    <tr style="text-align: left; border-bottom: 2px solid #eee;">
+                        <th style="padding: 10px;">Name</th>
+                        <th style="padding: 10px;">Phone</th>
+                        <th style="padding: 10px;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="guestListTable"></tbody>
+            </table>
         </div>
-        <div class="form-group">
-            <label>Parents</label>
-            <input type="text" id="bride_parents">
+
+        <!-- RSVP Data Tab -->
+        <div id="tab-rsvp-data" class="card">
+            <h3>RSVP Responses <button onclick="fetchRSVPData()"
+                    style="font-size: 12px; padding: 4px 8px;">Refresh</button>
+            </h3>
+            <table class="guest-table" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                <thead>
+                    <tr style="text-align: left; border-bottom: 2px solid #eee;">
+                        <th style="padding: 10px;">Name</th>
+                        <th style="padding: 10px;">Status</th>
+                        <th style="padding: 10px;">Jml</th>
+                        <th style="padding: 10px;">Message</th>
+                        <th style="padding: 10px;">Date</th>
+                    </tr>
+                </thead>
+                <tbody id="rsvpTableBody"></tbody>
+            </table>
         </div>
-        <div class="form-group">
-            <label>Photo</label>
-            <img id="bride_preview" class="preview-img">
-            <input type="file" id="bride_upload" onchange="uploadCouplePhoto('bride')">
-        </div>
-        <button onclick="saveContent()">Save Changes</button>
-    </div>
 
-    <!-- Event Tab -->
-    <div id="tab-event" class="card">
-        <h3>Akad Nikah</h3>
-        <div class="form-group"><label>Time</label><input type="text" id="akad_time"></div>
-        <div class="form-group"><label>Location</label><input type="text" id="akad_location"></div>
-        <div class="form-group"><label>Address</label><input type="text" id="akad_address"></div>
-        <div class="form-group"><label>Google Maps Link</label><input type="text" id="akad_map_link"></div>
-
-        <h3 style="margin-top: 30px;">Resepsi</h3>
-        <div class="form-group"><label>Time</label><input type="text" id="resepsi_time"></div>
-        <div class="form-group"><label>Location</label><input type="text" id="resepsi_location"></div>
-        <div class="form-group"><label>Address</label><input type="text" id="resepsi_address"></div>
-        <div class="form-group"><label>Google Maps Link</label><input type="text" id="resepsi_map_link"></div>
-        <button onclick="saveContent()">Save Changes</button>
-    </div>
-
-    <!-- Gallery -->
-    <div id="tab-gallery" class="card">
-        <h3>Gallery Images</h3>
-        <div class="form-group">
-            <label>Add New Photo</label>
-            <input type="file" id="galleryUpload">
-            <button onclick="addToGallery()">+ Add to Gallery</button>
-        </div>
-        <div id="galleryGrid" style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px;">
-            <!-- Gallery items will go here -->
-        </div>
-    </div>
-
-    <!-- RSVP -->
-    <div id="tab-rsvp" class="card">
-        <h3>Bank Info</h3>
-        <div class="form-group"><label>Bank Name</label><input type="text" id="bank_name"></div>
-        <div class="form-group"><label>Account Number</label><input type="text" id="account_number"></div>
-        <div class="form-group"><label>Account Name</label><input type="text" id="account_name"></div>
-
-        <h3 style="margin-top: 20px;">E-Wallet Info</h3>
-        <div class="form-group"><label>E-Wallet Name</label><input type="text" id="ewallet_name"
-                placeholder="Ex: GoPay, Dana"></div>
-        <div class="form-group"><label>Number</label><input type="text" id="ewallet_number"></div>
-        <div class="form-group"><label>Owner Name</label><input type="text" id="ewallet_owner"></div>
-        <button onclick="saveContent()">Save Changes</button>
-    </div>
-
-    <!-- Guests Tab -->
-    <div id="tab-guests" class="card">
-        <h3>Guest List Manager</h3>
-        <div class="form-group">
-            <textarea id="guestBulkInput" rows="5"
-                placeholder="Paste Name, Phone (one per line)&#10;Ex:&#10;Budi, 08123456789&#10;Siti, 08987654321"></textarea>
-            <button onclick="addGuests()" style="margin-top: 10px;">Add Guests</button>
-        </div>
-        <hr>
-        <table class="guest-table" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-            <thead>
-                <tr style="text-align: left; border-bottom: 2px solid #eee;">
-                    <th style="padding: 10px;">Name</th>
-                    <th style="padding: 10px;">Phone</th>
-                    <th style="padding: 10px;">Actions</th>
-                </tr>
-            </thead>
-            <tbody id="guestListTable"></tbody>
-        </table>
-    </div>
-
-    <!-- RSVP Data Tab -->
-    <div id="tab-rsvp-data" class="card">
-        <h3>RSVP Responses <button onclick="fetchRSVPData()" style="font-size: 12px; padding: 4px 8px;">Refresh</button>
-        </h3>
-        <table class="guest-table" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-            <thead>
-                <tr style="text-align: left; border-bottom: 2px solid #eee;">
-                    <th style="padding: 10px;">Name</th>
-                    <th style="padding: 10px;">Status</th>
-                    <th style="padding: 10px;">Jml</th>
-                    <th style="padding: 10px;">Message</th>
-                    <th style="padding: 10px;">Date</th>
-                </tr>
-            </thead>
-            <tbody id="rsvpTableBody"></tbody>
-        </table>
-    </div>
-
-    <!-- Theme Tab -->
-    <div id="tab-theme" class="card">
-        <h3>Theme Configuration</h3>
-        <div style="display: flex; gap: 40px; flex-wrap: wrap;">
-            <div style="flex: 1; min-width: 250px;">
-                <h4 style="border-bottom: 1px solid #eee; padding-bottom: 10px;">Colors</h4>
-                <div class="form-group">
-                    <label>Primary Color (Main)</label>
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        <input type="color" id="primary_color"
-                            style="height: 40px; width: 60px; padding: 0; border: none; cursor: pointer;">
-                        <input type="text" id="primary_color_text" placeholder="#000000" style="flex: 1;"
-                            onchange="document.getElementById('primary_color').value = this.value; document.getElementById('primary_color').dispatchEvent(new Event('input'));">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Secondary Color (Accents)</label>
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        <input type="color" id="secondary_color"
-                            style="height: 40px; width: 60px; padding: 0; border: none; cursor: pointer;">
-                        <input type="text" id="secondary_color_text" placeholder="#000000" style="flex: 1;"
-                            onchange="document.getElementById('secondary_color').value = this.value; document.getElementById('secondary_color').dispatchEvent(new Event('input'));">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Background Color</label>
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        <input type="color" id="bg_color"
-                            style="height: 40px; width: 60px; padding: 0; border: none; cursor: pointer;">
-                        <input type="text" id="bg_color_text" placeholder="#000000" style="flex: 1;"
-                            onchange="document.getElementById('bg_color').value = this.value; document.getElementById('bg_color').dispatchEvent(new Event('input'));">
+        <!-- SEO / Link Preview Tab -->
+        <div id="tab-seo" class="card">
+            <h3>Link Preview (WhatsApp & Social Media)</h3>
+            <div class="form-group">
+                <label>Thumbnail Image (Square Recommended)</label>
+                <div style="display: flex; align-items: flex-start; gap: 20px;">
+                    <img id="og_image_preview" class="preview-img" style="width: 150px; height: 150px; object-fit: cover;">
+                    <div style="flex: 1;">
+                        <input type="file" id="og_image_upload" accept="image/*" onchange="uploadOgImage()">
+                        <p style="color: #666; font-size: 13px; margin-top: 5px;">Upload an image that will appear when you share the link.</p>
                     </div>
                 </div>
             </div>
+            <div class="form-group">
+                <label>Link Title</label>
+                <input type="text" id="og_title" placeholder="Ex: The Wedding of Ollifer & Tami">
+            </div>
+            <div class="form-group">
+                <label>Link Description</label>
+                <input type="text" id="og_description" placeholder="Ex: Sabtu, 28 Desember 2025. You are invited!">
+            </div>
+            <button onclick="saveContent()">Save Preview Settings</button>
+        </div>
 
-            <div style="flex: 1; min-width: 250px;">
-                <h4 style="border-bottom: 1px solid #eee; padding-bottom: 10px;">Fonts</h4>
-                <div class="form-group">
-                    <label>Signature Font (Couple Names)</label>
-                    <select id="font_signature">
-                        <option value="Great Vibes">Great Vibes (Classic Cursive)</option>
-                        <option value="Dancing Script">Dancing Script (Casual Cursive)</option>
-                        <option value="Parisienne">Parisienne (Elegant Cursive)</option>
-                        <option value="Allura">Allura (Flowing Cursive)</option>
-                    </select>
+        <!-- Theme Tab -->
+        <div id="tab-theme" class="card">
+            <h3>Theme Configuration</h3>
+            <div style="display: flex; gap: 40px; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 250px;">
+                    <h4 style="border-bottom: 1px solid #eee; padding-bottom: 10px;">Colors</h4>
+                    <div class="form-group">
+                        <label>Primary Color (Main)</label>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <input type="color" id="primary_color"
+                                style="height: 40px; width: 60px; padding: 0; border: none; cursor: pointer;">
+                            <input type="text" id="primary_color_text" placeholder="#000000" style="flex: 1;"
+                                onchange="document.getElementById('primary_color').value = this.value; document.getElementById('primary_color').dispatchEvent(new Event('input'));">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Secondary Color (Accents)</label>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <input type="color" id="secondary_color"
+                                style="height: 40px; width: 60px; padding: 0; border: none; cursor: pointer;">
+                            <input type="text" id="secondary_color_text" placeholder="#000000" style="flex: 1;"
+                                onchange="document.getElementById('secondary_color').value = this.value; document.getElementById('secondary_color').dispatchEvent(new Event('input'));">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Background Color</label>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <input type="color" id="bg_color"
+                                style="height: 40px; width: 60px; padding: 0; border: none; cursor: pointer;">
+                            <input type="text" id="bg_color_text" placeholder="#000000" style="flex: 1;"
+                                onchange="document.getElementById('bg_color').value = this.value; document.getElementById('bg_color').dispatchEvent(new Event('input'));">
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Heading Font (Titles)</label>
-                    <select id="font_heading">
-                        <option value="Playfair Display">Playfair Display (Serif)</option>
-                        <option value="Merriweather">Merriweather (Serif)</option>
-                        <option value="Lora">Lora (Serif)</option>
-                        <option value="Cinzel">Cinzel (Elegant Serif)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Body Font (Texts)</label>
-                    <select id="font_body">
-                        <option value="Open Sans">Open Sans (Sans-Serif)</option>
-                        <option value="Lato">Lato (Sans-Serif)</option>
-                        <option value="Montserrat">Montserrat (Modern Sans)</option>
-                        <option value="Roboto">Roboto (Neutral Sans)</option>
-                    </select>
+
+                <div style="flex: 1; min-width: 250px;">
+                    <h4 style="border-bottom: 1px solid #eee; padding-bottom: 10px;">Fonts</h4>
+                    <div class="form-group">
+                        <label>Signature Font (Couple Names)</label>
+                        <select id="font_signature">
+                            <option value="Great Vibes">Great Vibes (Classic Cursive)</option>
+                            <option value="Dancing Script">Dancing Script (Casual Cursive)</option>
+                            <option value="Parisienne">Parisienne (Elegant Cursive)</option>
+                            <option value="Allura">Allura (Flowing Cursive)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Heading Font (Titles)</label>
+                        <select id="font_heading">
+                            <option value="Playfair Display">Playfair Display (Serif)</option>
+                            <option value="Merriweather">Merriweather (Serif)</option>
+                            <option value="Lora">Lora (Serif)</option>
+                            <option value="Cinzel">Cinzel (Elegant Serif)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Body Font (Texts)</label>
+                        <select id="font_body">
+                            <option value="Open Sans">Open Sans (Sans-Serif)</option>
+                            <option value="Lato">Lato (Sans-Serif)</option>
+                            <option value="Montserrat">Montserrat (Modern Sans)</option>
+                            <option value="Roboto">Roboto (Neutral Sans)</option>
+                        </select>
+                    </div>
                 </div>
             </div>
+            <div style="margin-top: 20px;">
+                <button onclick="saveContent()" style="width: 100%;">Save Theme Settings</button>
+            </div>
         </div>
-        <div style="margin-top: 20px;">
-            <button onclick="saveContent()" style="width: 100%;">Save Theme Settings</button>
-        </div>
-    </div>
 
-    <script src="admin.js"></script>
+        <script src="admin.js"></script>
 </body>
 
 </html>

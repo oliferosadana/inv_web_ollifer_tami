@@ -158,6 +158,12 @@ function saveContent() {
     currentContent.theme.font_heading = document.getElementById('font_heading').value;
     currentContent.theme.font_body = document.getElementById('font_body').value;
 
+    // Meta
+    if (!currentContent.meta) currentContent.meta = {};
+    currentContent.meta.og_title = document.getElementById('og_title').value;
+    currentContent.meta.og_description = document.getElementById('og_description').value;
+    // og_image is set during upload
+
     fetch('/api/content', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -229,6 +235,18 @@ function addToGallery() {
         saveContent();
         // Clear input
         fileInput.value = '';
+    });
+}
+
+function uploadOgImage() {
+    const fileInput = document.getElementById('og_image_upload');
+    const file = fileInput.files[0];
+    if (!file) return;
+
+    uploadFile(file, (path) => {
+        if (!currentContent.meta) currentContent.meta = {};
+        currentContent.meta.og_image = path;
+        document.getElementById('og_image_preview').src = path;
     });
 }
 

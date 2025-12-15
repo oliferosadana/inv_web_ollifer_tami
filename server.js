@@ -10,6 +10,58 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(bodyParser.json());
+
+// SSR: Intercept root request to inject OG Meta Tags
+app.get('/', (req, res) => {
+    // 1. Read Content
+    fs.readFile(DATA_FILE, 'utf8', (err, jsonString) => {
+        if (err) return res.status(500).send("Error reading content");
+
+        let content;
+        try {
+            content = JSON.parse(jsonString);
+        } catch (e) {
+            content = {};
+        }
+
+        // 2. Read Index HTML
+        const indexPath = path.join(__dirname, 'index.html');
+        fs.readFile(indexPath, 'utf8', (err, htmlData) => {
+            if (err) return res.status(500).send("Error reading index.html");
+
+            // 3. Inject Values
+            // Fallbacks if meta isn't set yet
+            const title = (content.meta && content.meta.og_title) || (content.hero ? content.hero.title : "Wedding Invitation");
+            const desc = (content.meta && content.meta.og_description) || (content.hero ? content.hero.date : "You are invited!");
+
+            // For image, we need a full URL if possible, or relative. WhatsApp usually needs an absolute URL or at least correct serving.
+            // If we are running on localhost, request.protocol + host helps, but in prod (behind proxy) might need configuration.
+            // For now, we trust the relative path generally works if the crawler hits the domain, OR we prepend protocol/host.
+            let image = (content.meta && content.meta.og_image) ? content.meta.og_image : "assets/images/gallery-1.png";
+
+            // Construct absolute URL for image if it's relative
+            if (!image.startsWith('http')) {
+                const protocol = req.protocol;
+                const host = req.get('host');
+                image = `${protocol}://${host}/${image}`;
+            }
+
+            // Replace tags
+            // Note: This matches the exact strings we put in index.html
+            let injectedHtml = htmlData
+                .replace('<meta property="og:title" content="The Wedding of Bintang & Bulan">', `<meta property="og:title" content="${title}">`)
+                // Regex for description to handle potential line breaks or variations in default file
+                .replace(/<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${desc}">`)
+                .replace(/<meta property="og:image" content="[^"]*">/, `<meta property="og:image" content="${image}">`)
+                // Also replace the <title> tag
+                .replace('<title>The Wedding of </title>', `<title>The Wedding of ${title}</title>`);
+
+            res.send(injectedHtml);
+        });
+    });
+});
+
 app.use(express.static(path.join(__dirname, '.'))); // Serve static files
 
 const DATA_FILE = path.join(__dirname, 'content.json');

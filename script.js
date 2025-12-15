@@ -116,6 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         // Hero
         if (data.hero) {
+            document.title = data.hero.title; // Update browser tab title
             document.querySelector('.title').textContent = data.hero.title;
             document.querySelector('.subtitle').textContent = data.hero.subtitle;
             document.querySelector('.date').textContent = data.hero.date;
