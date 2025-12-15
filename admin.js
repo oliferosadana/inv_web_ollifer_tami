@@ -258,6 +258,48 @@ function deleteFromGallery(index) {
 }
 
 // --- Guest Management ---
+function addGuests() {
+    const input = document.getElementById('guestBulkInput').value;
+    if (!input.trim()) return;
+
+    const lines = input.split('\n');
+    const guests = [];
+
+    lines.forEach(line => {
+        if (!line.trim()) return;
+        // Simple CSV parse: Name, Phone
+        // If comma exists, split. If not, treat whole line as name
+        let name = line;
+        let phone = '';
+
+        if (line.includes(',')) {
+            const parts = line.split(',');
+            name = parts[0].trim();
+            phone = parts[1].trim();
+        } else {
+            name = line.trim();
+        }
+
+        if (name) {
+            guests.push({ name, phone });
+        }
+    });
+
+    if (guests.length === 0) return;
+
+    fetch('/api/guests', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(guests)
+    })
+        .then(res => res.json())
+        .then(() => {
+            document.getElementById('guestBulkInput').value = '';
+            fetchGuests();
+            alert('Guests added!');
+        })
+        .catch(err => alert('Failed to add guests'));
+}
 function fetchGuests() {
     fetch('/api/guests')
         .then(res => res.json())
