@@ -10,7 +10,6 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.json());
 
 // SSR: Intercept root request to inject OG Meta Tags
 app.get('/', (req, res) => {

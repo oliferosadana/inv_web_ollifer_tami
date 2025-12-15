@@ -291,6 +291,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 message: document.getElementById('rsvp_message').value
             };
 
+            const btnSubmit = rsvpForm.querySelector('button[type="submit"]');
+            btnSubmit.disabled = true;
+            btnSubmit.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+
             fetch('/api/rsvp', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -301,7 +305,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert('Terima kasih! Konfirmasi kehadiran Anda telah tersimpan.');
                     rsvpForm.reset();
                 })
-                .catch(() => alert('Terjadi kesalahan, coba lagi.'));
+                .catch(() => alert('Terjadi kesalahan, coba lagi.'))
+                .finally(() => {
+                    btnSubmit.disabled = false;
+                    btnSubmit.innerHTML = 'Kirim Konfirmasi';
+                });
         });
     }
 
