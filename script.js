@@ -127,9 +127,15 @@ document.addEventListener('DOMContentLoaded', () => {
             startCountdown(data.hero.weddingDateIso);
 
             // Music Volume
+            // Music Settings
             const bgMusic = document.getElementById('bgMusic');
-            if (bgMusic && data.hero.music_volume !== undefined) {
-                bgMusic.volume = data.hero.music_volume;
+            if (bgMusic) {
+                if (data.hero.music) {
+                    bgMusic.src = data.hero.music;
+                }
+                if (data.hero.music_volume !== undefined) {
+                    bgMusic.volume = data.hero.music_volume;
+                }
             }
         }
 
