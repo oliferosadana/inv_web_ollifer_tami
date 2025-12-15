@@ -216,6 +216,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let isPlaying = false;
 
     openBtn.addEventListener('click', () => {
+        playMusic(); // Play immediately for Safari support
+
         coverSection.style.transition = 'transform 0.8s ease-in-out, opacity 0.8s ease-in-out';
         coverSection.style.transform = 'translateY(-100%)';
         coverSection.style.opacity = '0';
@@ -224,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
             coverSection.classList.add('hidden');
             mainContent.classList.remove('hidden');
             musicControl.classList.remove('hidden');
-            playMusic();
+            // playMusic(); // Moved up
 
             // Re-trigger AOS layout
             AOS.refresh();
