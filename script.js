@@ -125,6 +125,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Countdown
             startCountdown(data.hero.weddingDateIso);
+
+            // Music Volume
+            const bgMusic = document.getElementById('bgMusic');
+            if (bgMusic && data.hero.music_volume !== undefined) {
+                bgMusic.volume = data.hero.music_volume;
+            }
         }
 
         // Couple

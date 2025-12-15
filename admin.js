@@ -58,7 +58,14 @@ function populateForms(data) {
     document.getElementById('hero_subtitle').value = data.hero.subtitle;
     document.getElementById('hero_date').value = data.hero.date;
     document.getElementById('hero_weddingDateIso').value = data.hero.weddingDateIso;
-    if (data.hero.music) document.getElementById('music_preview').src = data.hero.music;
+    if (data.hero.music) {
+        document.getElementById('music_preview').src = data.hero.music;
+        document.getElementById('music_url').value = data.hero.music;
+    }
+    if (data.hero.music_volume !== undefined) {
+        document.getElementById('music_volume').value = data.hero.music_volume;
+        updateVolumeLabel();
+    }
 
     // Couple
     document.getElementById('groom_name').value = data.couple.groom_name;
@@ -117,7 +124,10 @@ function saveContent() {
     currentContent.hero.subtitle = document.getElementById('hero_subtitle').value;
     currentContent.hero.date = document.getElementById('hero_date').value;
     currentContent.hero.weddingDateIso = document.getElementById('hero_weddingDateIso').value;
-    // Music path is already in currentContent.hero.music if updated via uploadMusic
+
+    // Music
+    currentContent.hero.music = document.getElementById('music_url').value;
+    currentContent.hero.music_volume = parseFloat(document.getElementById('music_volume').value);
 
     currentContent.couple.groom_name = document.getElementById('groom_name').value;
     currentContent.couple.groom_parents = document.getElementById('groom_parents').value;
@@ -178,8 +188,20 @@ function uploadMusic() {
 
     uploadFile(file, (path) => {
         currentContent.hero.music = path;
+        document.getElementById('music_url').value = path;
         document.getElementById('music_preview').src = path;
     });
+}
+
+function updateMusicPreviewFromUrl() {
+    const url = document.getElementById('music_url').value;
+    document.getElementById('music_preview').src = url;
+    currentContent.hero.music = url;
+}
+
+function updateVolumeLabel() {
+    const val = document.getElementById('music_volume').value;
+    document.getElementById('vol_display').innerText = Math.round(val * 100) + '%';
 }
 
 function uploadCouplePhoto(type) {

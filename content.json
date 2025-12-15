@@ -4,7 +4,8 @@
         "subtitle": "We Are Getting Married",
         "date": "Kamis, 15 Januari 2026",
         "weddingDateIso": "2026-01-15T15:00",
-        "music": "https://cdn.pixabay.com/download/audio/2022/02/07/audio_1822e4270f.mp3?filename=wedding-piano-11111.mp3"
+        "music": "assets/uploaded/1765778467147-WhatsApp Audio 2025-12-15 at 13.59.29.mpeg",
+        "music_volume": 0.5
     },
     "couple": {
         "groom_name": "Ollifer Megi Osadana",
