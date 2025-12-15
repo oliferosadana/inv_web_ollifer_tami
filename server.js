@@ -99,6 +99,7 @@ app.post('/api/content', (req, res) => {
     const newContent = req.body;
     fs.writeFile(DATA_FILE, JSON.stringify(newContent, null, 4), (err) => {
         if (err) {
+            console.error('Error saving content:', err);
             return res.status(500).send('Error saving data');
         }
         res.json({ message: 'Content updated successfully' });
@@ -133,7 +134,10 @@ app.post('/api/guests', (req, res) => {
         content.guests.push(...newGuests);
 
         fs.writeFile(DATA_FILE, JSON.stringify(content, null, 4), (err) => {
-            if (err) return res.status(500).send('Error saving');
+            if (err) {
+                console.error('Error adding guests:', err);
+                return res.status(500).send('Error saving');
+            }
             res.json({ message: 'Guests added' });
         });
     });
