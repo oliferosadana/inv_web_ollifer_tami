@@ -72,19 +72,19 @@
                 <p class="date" data-aos="fade-up">Sabtu, 28 Desember 2025</p>
 
                 <div class="countdown" data-aos="fade-up">
-                    <div class="time-box">
+                    <div class="time-box" data-aos="zoom-in" data-aos-delay="100">
                         <span id="days">00</span>
                         <small>Hari</small>
                     </div>
-                    <div class="time-box">
+                    <div class="time-box" data-aos="zoom-in" data-aos-delay="200">
                         <span id="hours">00</span>
                         <small>Jam</small>
                     </div>
-                    <div class="time-box">
+                    <div class="time-box" data-aos="zoom-in" data-aos-delay="300">
                         <span id="minutes">00</span>
                         <small>Menit</small>
                     </div>
-                    <div class="time-box">
+                    <div class="time-box" data-aos="zoom-in" data-aos-delay="400">
                         <span id="seconds">00</span>
                         <small>Detik</small>
                     </div>
@@ -156,23 +156,23 @@
                         <h3>Akad Nikah</h3>
                     </div>
                     <div class="event-body">
-                        <div class="row">
+                        <div class="row" data-aos="fade-up" data-aos-delay="200">
                             <div class="col">
                                 <i class="far fa-clock"></i>
                                 <p id="txt_akad_time">08:00 - 10:00 WIB</p>
                             </div>
                             <div class="col">
                                 <i class="far fa-calendar-alt"></i>
-                                <p>Sabtu, 28 Desember 2025</p>
+                                <p id="txt_akad_date">Sabtu, 28 Desember 2025</p>
                             </div>
                         </div>
-                        <div class="location mt-3">
+                        <div class="location mt-3" data-aos="fade-up" data-aos-delay="300">
                             <i class="fas fa-map-marker-alt"></i>
                             <p id="txt_akad_location">Masjid Agung Al-Barkah</p>
                             <p class="text-sm" id="txt_akad_address">Jl. Veteran No. 123, Kota Bekasi</p>
                         </div>
                         <a href="https://goo.gl/maps/placeholder" target="_blank" class="btn-outline mt-3"
-                            id="btn_akad_map">Lihat Lokasi</a>
+                            id="btn_akad_map" data-aos="zoom-in" data-aos-delay="400">Lihat Lokasi</a>
                     </div>
                 </div>
 
@@ -181,23 +181,23 @@
                         <h3>Resepsi</h3>
                     </div>
                     <div class="event-body">
-                        <div class="row">
+                        <div class="row" data-aos="fade-up" data-aos-delay="200">
                             <div class="col">
                                 <i class="far fa-clock"></i>
                                 <p id="txt_resepsi_time">11:00 - 13:00 WIB</p>
                             </div>
                             <div class="col">
                                 <i class="far fa-calendar-alt"></i>
-                                <p>Sabtu, 28 Desember 2025</p>
+                                <p id="txt_resepsi_date">Sabtu, 28 Desember 2025</p>
                             </div>
                         </div>
-                        <div class="location mt-3">
+                        <div class="location mt-3" data-aos="fade-up" data-aos-delay="300">
                             <i class="fas fa-map-marker-alt"></i>
                             <p id="txt_resepsi_location">Grand Ballroom Hotel Horison</p>
                             <p class="text-sm" id="txt_resepsi_address">Jl. KH. Noer Ali, Kota Bekasi</p>
                         </div>
                         <a href="https://goo.gl/maps/placeholder" target="_blank" class="btn-outline mt-3"
-                            id="btn_resepsi_map">Lihat Lokasi</a>
+                            id="btn_resepsi_map" data-aos="zoom-in" data-aos-delay="400">Lihat Lokasi</a>
                     </div>
                 </div>
             </div>
@@ -232,10 +232,10 @@
                 </div>
 
                 <form class="rsvp-form" id="rsvpForm" data-aos="fade-up">
-                    <div class="form-group">
+                    <div class="form-group" data-aos="fade-up" data-aos-delay="100">
                         <input type="text" id="rsvp_name" placeholder="Nama Lengkap" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" data-aos="fade-up" data-aos-delay="200">
                         <select id="rsvp_status" required>
                             <option value="">Konfirmasi Kehadiran</option>
                             <option value="Hadir">Hadir</option>
@@ -243,17 +243,18 @@
                             <option value="Ragu-ragu">Masih Ragu</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" data-aos="fade-up" data-aos-delay="300">
                         <select id="rsvp_count" required>
                             <option value="">Jumlah Tamu</option>
                             <option value="1">1 Orang</option>
                             <option value="2">2 Orang</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" data-aos="fade-up" data-aos-delay="400">
                         <textarea id="rsvp_message" placeholder="Ucapan & Doa" rows="3"></textarea>
                     </div>
-                    <button type="submit" class="btn-primary w-100">Kirim Konfirmasi</button>
+                    <button type="submit" class="btn-primary w-100" data-aos="zoom-in" data-aos-delay="500">Kirim
+                        Konfirmasi</button>
                 </form>
             </div>
         </section>
@@ -271,7 +272,7 @@
                         <i class="fas fa-university fa-2x mb-2"></i>
                         <h3 id="bank_name_text">BCA</h3>
                         <p class="account-number" id="account_number_text">1234 5678 90</p>
-                        <p id="account_owner_text">a.n Bintang Pratama</p>
+                        <p id="account_owner_text">a.n</p>
                         <button class="btn-copy" id="btn_copy_rekening"><i class="far fa-copy"></i>
                             Salin No. Rekening</button>
                     </div>
@@ -292,10 +293,13 @@
         <!-- Footer -->
         <footer>
             <div class="container text-center">
-                <h2 class="font-signature">Bintang & Bulan</h2>
-                <p>Terima kasih atas doa & restu yang telah diberikan.</p>
-                <small>&copy; 2025 Undangan Digital. All Rights Reserved.</small>
-                <p><small>Design by Ollifer.</small></p>
+                <div class="container text-center">
+                    <h2 class="font-signature" id="footer_couple_name" data-aos="fade-down">Bintang & Bulan</h2>
+                    <p data-aos="fade-up" data-aos-delay="100">Terima kasih atas doa & restu yang telah diberikan.</p>
+                    <small data-aos="fade-up" data-aos-delay="200">&copy; 2025 Undangan Digital. All Rights
+                        Reserved.</small>
+                    <p data-aos="fade-up" data-aos-delay="300"><small>Design by Ollifer.</small></p>
+                </div>
             </div>
         </footer>
 

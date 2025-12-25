@@ -10,28 +10,30 @@
     "couple": {
         "groom_name": "Ollifer Megi Osadana",
         "groom_parents": "Putra dari Bpk. Hartoyo & Ibu Multihawati",
-        "groom_img": "assets/uploaded/1765573917219-fotoolip.png",
+        "groom_img": "assets/uploaded/1766650637057-WhatsApp Image 2025-12-25 at 16.14.167.jpeg",
         "bride_name": "Nindya Agustika Utamia",
         "bride_parents": "Putri dari Bpk. Padillah & Ibu Ida",
-        "bride_img": "assets/uploaded/1765573927898-fototami.png"
+        "bride_img": "assets/uploaded/1766650911928-WhatsApp Image 2025-12-25 at 16.17.177.jpeg"
     },
     "event": {
         "akad_title": "Akad Nikah",
-        "akad_time": "08:00 - 10:00 WIB",
-        "akad_date": "Sabtu, 28 Desember 2025",
+        "akad_time": "013:00 - 16:00 WITA",
+        "akad_date": "Kamis, 15 Januari 2026",
         "akad_location": "Katta Coffee & Kitchen",
-        "akad_address": "",
-        "akad_map_link": "",
+        "akad_address": "Jl. Pupuk Raya No.08 RT. 16, Damai, Bahagia, Kota Balikpapan, Kalimantan Timur 76114",
+        "akad_map_link": "https://maps.app.goo.gl/TLe4w91sc61AqnVV6",
         "resepsi_title": "Resepsi",
-        "resepsi_time": "11:00 - 13:00 WIB",
-        "resepsi_date": "Sabtu, 28 Desember 2025",
+        "resepsi_time": "17:00 - 21:30 WITA",
+        "resepsi_date": "Kamis, 15 Januari 2026",
         "resepsi_location": "Katta Coffee & Kitchen",
-        "resepsi_address": "",
-        "resepsi_map_link": ""
+        "resepsi_address": "Jl. Pupuk Raya No.08 RT. 16, Damai, Bahagia, Kota Balikpapan, Kalimantan Timur 76114",
+        "resepsi_map_link": "https://maps.app.goo.gl/TLe4w91sc61AqnVV6"
     },
     "gallery": [
-        "assets/uploaded/1765571098254-fotosayaaa.png",
-        "assets/uploaded/1765571113036-fotosayaaa.JPG"
+        "assets/uploaded/1765816254051-Copy of DSCF9842.JPG",
+        "assets/uploaded/1765816261981-Copy of DSCF9947.JPG",
+        "assets/uploaded/1765816271023-Copy of DSCF9954.JPG",
+        "assets/uploaded/1765816279649-Copy of DSCF9847.JPG"
     ],
     "rsvp": {
         "bank_name": "Mandiri",
@@ -77,8 +79,8 @@
         "font_signature": "Great Vibes"
     },
     "meta": {
-        "og_title": "The Wedding of Ollifer & Tami",
-        "og_description": "Kami mengundang Anda untuk hadir di pernikahan kami. Sabtu, 28 Desember 2025.",
+        "og_title": "",
+        "og_description": "",
         "og_image": ""
     }
 }

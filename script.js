@@ -56,6 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const el = document.getElementById('txt_akad_location');
                 if (el) el.innerText = data.event.akad_location;
             }
+            if (data.event.akad_date) {
+                const el = document.getElementById('txt_akad_date');
+                if (el) el.innerText = data.event.akad_date;
+            }
             if (data.event.akad_address) {
                 const el = document.getElementById('txt_akad_address');
                 if (el) el.innerText = data.event.akad_address;
@@ -69,6 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (data.event.resepsi_time) {
                 const el = document.getElementById('txt_resepsi_time');
                 if (el) el.innerText = data.event.resepsi_time;
+            }
+            if (data.event.resepsi_date) {
+                const el = document.getElementById('txt_resepsi_date');
+                if (el) el.innerText = data.event.resepsi_date;
             }
             if (data.event.resepsi_location) {
                 const el = document.getElementById('txt_resepsi_location');
@@ -137,6 +145,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (data.hero.music_volume !== undefined) {
                     bgMusic.volume = data.hero.music_volume;
                 }
+            }
+
+            // Footer Name
+            const footerName = document.getElementById('footer_couple_name');
+            if (footerName && data.hero.title) {
+                footerName.textContent = data.hero.title;
             }
         }
 

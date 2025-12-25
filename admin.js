@@ -6,6 +6,21 @@ if (localStorage.getItem('token')) {
     document.getElementById('dashboard').classList.remove('hidden');
     document.getElementById('mainContent').classList.remove('hidden');
     fetchContent();
+    document.getElementById('password').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') login();
+    });
+}
+
+function toggleSidebar() {
+    const body = document.body;
+    const sidebar = document.querySelector('.sidebar');
+
+    // Check if mobile (by checking window width or existing class)
+    if (window.innerWidth <= 768) {
+        sidebar.classList.toggle('open');
+    } else {
+        body.classList.toggle('sidebar-closed');
+    }
 }
 
 function login() {
@@ -77,8 +92,10 @@ function populateForms(data) {
     if (data.couple.bride_img) document.getElementById('bride_preview').src = data.couple.bride_img;
 
     // Event
+    document.getElementById('akad_date').value = data.event.akad_date || ''; // Default empty if undefined
     document.getElementById('akad_time').value = data.event.akad_time;
     document.getElementById('akad_location').value = data.event.akad_location;
+    document.getElementById('resepsi_date').value = data.event.resepsi_date || '';
     document.getElementById('resepsi_time').value = data.event.resepsi_time;
     document.getElementById('resepsi_location').value = data.event.resepsi_location;
 
@@ -134,10 +151,12 @@ function saveContent() {
     currentContent.couple.bride_name = document.getElementById('bride_name').value;
     currentContent.couple.bride_parents = document.getElementById('bride_parents').value;
 
+    currentContent.event.akad_date = document.getElementById('akad_date').value;
     currentContent.event.akad_time = document.getElementById('akad_time').value;
     currentContent.event.akad_location = document.getElementById('akad_location').value;
     currentContent.event.akad_address = document.getElementById('akad_address').value;
     currentContent.event.akad_map_link = document.getElementById('akad_map_link').value;
+    currentContent.event.resepsi_date = document.getElementById('resepsi_date').value;
     currentContent.event.resepsi_time = document.getElementById('resepsi_time').value;
     currentContent.event.resepsi_location = document.getElementById('resepsi_location').value;
     currentContent.event.resepsi_address = document.getElementById('resepsi_address').value;
@@ -327,12 +346,28 @@ function renderGuests(guests) {
             <td style="padding: 10px;">${guest.name}</td>
             <td style="padding: 10px;">${guest.phone}</td>
             <td style="padding: 10px;">
+                <button onclick="copyGuestLink(this, '${inviteLink}')" style="margin-right: 10px; background: #3498db; color: white; border: none; padding: 5px 10px; font-size: 12px; cursor: pointer; border-radius: 4px;"><i class="fas fa-copy"></i> Copy</button>
                 <a href="${inviteLink}" target="_blank" style="margin-right: 10px; color: #1abc9c; text-decoration: none;"><i class="fas fa-link"></i> Link</a>
                 <a href="${waLink}" target="_blank" style="margin-right: 10px; color: #2ecc71; text-decoration: none;"><i class="fab fa-whatsapp"></i> Kirim WA</a>
                 <button onclick="deleteGuest(${index})" style="background: red; color: white; border: none; padding: 5px 10px; font-size: 12px; cursor: pointer; border-radius: 4px;"><i class="fas fa-trash"></i></button>
             </td>
         `;
         tbody.appendChild(tr);
+    });
+}
+
+function copyGuestLink(btn, text) {
+    navigator.clipboard.writeText(text).then(() => {
+        const originalHtml = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        btn.style.background = '#27ae60';
+        setTimeout(() => {
+            btn.innerHTML = originalHtml;
+            btn.style.background = '#3498db';
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy', err);
+        alert('Failed to copy link manually');
     });
 }
 
