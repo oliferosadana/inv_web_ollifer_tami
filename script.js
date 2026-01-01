@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Content Loading
-    fetch('/api/content')
+    fetch('/api/content?t=' + new Date().getTime())
         .then(res => res.json())
         .then(data => {
             loadContent(data);
@@ -171,25 +171,14 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('footer h2').textContent = data.hero.title;
         }
 
-        // Events
-        if (data.event) {
-            const events = document.querySelectorAll('.event-card');
-            // Akad
-            events[0].querySelector('.event-header h3').textContent = data.event.akad_title;
-            // Simplified selector for demo: assuming structure is fixed
-            // In a real app, use IDs for better targeting
-        }
 
-        // RSVP / Bank
-        if (data.rsvp) {
-            document.querySelector('.bank-card h3').textContent = data.rsvp.bank_name;
-            document.querySelector('.account-number').textContent = data.rsvp.account_number;
-            document.querySelectorAll('.bank-card p')[1].textContent = "a.n " + data.rsvp.account_name;
-        }
 
         // Gallery
+        const gallerySection = document.getElementById('gallery');
         const galleryGrid = document.querySelector('.gallery-grid');
-        if (data.gallery) {
+
+        if (data.gallery && data.gallery.length > 0) {
+            gallerySection.style.display = 'block'; // Ensure it's visible if data exists
             galleryGrid.innerHTML = ''; // Clear existing static/placeholder items
 
             data.gallery.forEach((src, index) => {
@@ -209,6 +198,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Refresh AOS to detect new elements
             setTimeout(() => AOS.refresh(), 100);
+        } else {
+            // Hide gallery section if no images
+            if (gallerySection) gallerySection.style.display = 'none';
         }
     }
 

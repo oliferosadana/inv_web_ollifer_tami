@@ -17,23 +17,23 @@
     },
     "event": {
         "akad_title": "Akad Nikah",
-        "akad_time": "013:00 - 16:00 WITA",
+        "akad_time": "15:00 - 16:30 WITA",
         "akad_date": "Kamis, 15 Januari 2026",
         "akad_location": "Katta Coffee & Kitchen",
-        "akad_address": "Jl. Pupuk Raya No.08 RT. 16, Damai, Bahagia, Kota Balikpapan, Kalimantan Timur 76114",
-        "akad_map_link": "https://maps.app.goo.gl/TLe4w91sc61AqnVV6",
+        "akad_address": "",
+        "akad_map_link": "",
         "resepsi_title": "Resepsi",
-        "resepsi_time": "17:00 - 21:30 WITA",
+        "resepsi_time": "17:00 - 20:30 WITA",
         "resepsi_date": "Kamis, 15 Januari 2026",
         "resepsi_location": "Katta Coffee & Kitchen",
-        "resepsi_address": "Jl. Pupuk Raya No.08 RT. 16, Damai, Bahagia, Kota Balikpapan, Kalimantan Timur 76114",
-        "resepsi_map_link": "https://maps.app.goo.gl/TLe4w91sc61AqnVV6"
+        "resepsi_address": "",
+        "resepsi_map_link": ""
     },
     "gallery": [
-        "assets/uploaded/1765816254051-Copy of DSCF9842.JPG",
-        "assets/uploaded/1765816261981-Copy of DSCF9947.JPG",
-        "assets/uploaded/1765816271023-Copy of DSCF9954.JPG",
-        "assets/uploaded/1765816279649-Copy of DSCF9847.JPG"
+        "assets/uploaded/1767096789899-Copy of DSCF9842.JPG",
+        "assets/uploaded/1767099660505-Copy of DSCF9847.JPG",
+        "assets/uploaded/1767103152442-Copy of DSCF9947.JPG",
+        "assets/uploaded/1767103161677-Copy of DSCF9954.JPG"
     ],
     "rsvp": {
         "bank_name": "Mandiri",
