@@ -131,6 +131,15 @@ function populateForms(data) {
         document.getElementById('font_body').value = data.theme.font_body;
     }
 
+    // SEO / Meta
+    if (data.meta) {
+        document.getElementById('og_title').value = data.meta.og_title || '';
+        document.getElementById('og_description').value = data.meta.og_description || '';
+        if (data.meta.og_image) {
+            document.getElementById('og_image_preview').src = data.meta.og_image;
+        }
+    }
+
     // Gallery Grid
     const galleryGrid = document.getElementById('galleryGrid');
     galleryGrid.innerHTML = '';
