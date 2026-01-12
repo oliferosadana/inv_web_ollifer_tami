@@ -237,10 +237,10 @@
             <div class="login-box">
                 <h2>Admin Login</h2>
                 <div class="form-group">
-                    <input type="text" id="username" placeholder="Username (admin)">
+                    <input type="text" id="username" placeholder="Username">
                 </div>
                 <div class="form-group">
-                    <input type="password" id="password" placeholder="Password (admin123)">
+                    <input type="password" id="password" placeholder="Password">
                 </div>
                 <button onclick="login()">Login</button>
                 <p id="loginError" style="color: red; margin-top: 10px; display: none;">Invalid Credentials</p>
@@ -392,7 +392,19 @@
 
             <!-- Guests Tab -->
             <div id="tab-guests" class="card">
-                <h3>Guest List Manager</h3>
+                <h3>Message Template</h3>
+                <div class="form-group"
+                    style="background: #f9f9f9; padding: 15px; border-radius: 5px; border: 1px solid #eee;">
+                    <label>WhatsApp Message Template</label>
+                    <p style="font-size: 12px; color: #666; margin-top: -5px; margin-bottom: 10px;">Use <b>{name}</b>
+                        for guest name and <b>{link}</b> for the invitation link.</p>
+                    <textarea id="wa_template" rows="6"
+                        placeholder="Halo {name},&#10;Kami mengundang Anda...&#10;{link}"></textarea>
+                    <button onclick="saveContent()" style="margin-top: 10px; background: #34495e;">Save
+                        Template</button>
+                </div>
+
+                <h3 style="margin-top: 30px; border-top: 2px solid #eee; padding-top: 20px;">Guest List Manager</h3>
                 <div class="form-group">
                     <textarea id="guestBulkInput" rows="5"
                         placeholder="Paste Name, Phone (one per line)&#10;Ex:&#10;Budi, 08123456789&#10;Siti, 08987654321"></textarea>

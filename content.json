@@ -20,13 +20,13 @@
         "akad_time": "15:00 - 16:30 WITA",
         "akad_date": "Kamis, 15 Januari 2026",
         "akad_location": "Katta Coffee & Kitchen",
-        "akad_address": "Jl. Pupuk Raya No.08 RT. 16, Damai, Bahagia, Kota Balikpapan",
+        "akad_address": "",
         "akad_map_link": "",
         "resepsi_title": "Resepsi",
         "resepsi_time": "17:00 - 20:30 WITA",
         "resepsi_date": "Kamis, 15 Januari 2026",
         "resepsi_location": "Katta Coffee & Kitchen",
-        "resepsi_address": "Jl. Pupuk Raya No.08 RT. 16, Damai, Bahagia, Kota Balikpapan",
+        "resepsi_address": "",
         "resepsi_map_link": ""
     },
     "gallery": [
@@ -82,5 +82,6 @@
         "og_title": "",
         "og_description": "",
         "og_image": ""
-    }
+    },
+    "whatsapp_template": "\"Assalamu’alaikum Warahmatullahi Wabarakatuh / Selamat Pagi, {name}.\n\nSemoga anda dalam keadaan sehat dan bahagia.\n\nKami ingin berbagi kabar bahagia dan mengundang anda untuk hadir di hari istimewa kami. Sebagaimana firman Allah SWT:\n\n“Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya...” (QS. Ar-Rum: 21)\n\nMerupakan suatu kehormatan bagi kami jika Anda/Kamu berkenan hadir dan memberikan doa restu secara langsung. Detail acara dapat dilihat melalui tautan di bawah ini:\n\n{link}\n\nTerima kasih banyak atas perhatian dan doanya. Sampai jumpa di hari bahagia kami!\""
 }

@@ -80,6 +80,16 @@ function populateForms(data) {
     if (data.hero.music_volume !== undefined) {
         document.getElementById('music_volume').value = data.hero.music_volume;
         updateVolumeLabel();
+        document.getElementById('music_volume').value = data.hero.music_volume;
+        updateVolumeLabel();
+    }
+
+    // WhatsApp Template
+    if (data.whatsapp_template) {
+        document.getElementById('wa_template').value = data.whatsapp_template;
+    } else {
+        // Default Template
+        document.getElementById('wa_template').value = "Halo {name},\n\nKami mengundang Bapak/Ibu/Saudara/i untuk hadir di pernikahan kami.\nKlik link berikut untuk membuka undangan:\n{link}\n\nTerima kasih.";
     }
 
     // Couple
@@ -140,7 +150,11 @@ function saveContent() {
     currentContent.hero.title = document.getElementById('hero_title').value;
     currentContent.hero.subtitle = document.getElementById('hero_subtitle').value;
     currentContent.hero.date = document.getElementById('hero_date').value;
+    currentContent.hero.date = document.getElementById('hero_date').value;
     currentContent.hero.weddingDateIso = document.getElementById('hero_weddingDateIso').value;
+
+    // WhatsApp Template
+    currentContent.whatsapp_template = document.getElementById('wa_template').value;
 
     // Music
     currentContent.hero.music = document.getElementById('music_url').value;
@@ -339,14 +353,18 @@ function renderGuests(guests) {
         const inviteLink = `${window.location.origin}?to=${encodeURIComponent(guest.name)}`;
 
         // WhatsApp Message
-        const message = `Halo ${guest.name},\nKami mengundang Bapak/Ibu/Saudara/i untuk hadir di pernikahan kami.\nKlik link berikut untuk membuka undangan:\n${inviteLink}\n\nTerima kasih.`;
+        let template = currentContent.whatsapp_template || "Halo {name},\n\nKami mengundang Bapak/Ibu/Saudara/i untuk hadir di pernikahan kami.\nKlik link berikut untuk membuka undangan:\n{link}\n\nTerima kasih.";
+
+        // Replace placeholders
+        const message = template.replace(/{name}/g, guest.name).replace(/{link}/g, inviteLink);
+
         const waLink = `https://wa.me/${guest.phone}?text=${encodeURIComponent(message)}`;
 
         tr.innerHTML = `
             <td style="padding: 10px;">${guest.name}</td>
             <td style="padding: 10px;">${guest.phone}</td>
             <td style="padding: 10px;">
-                <button onclick="copyGuestLink(this, '${inviteLink}')" style="margin-right: 10px; background: #3498db; color: white; border: none; padding: 5px 10px; font-size: 12px; cursor: pointer; border-radius: 4px;"><i class="fas fa-copy"></i> Copy</button>
+                <button onclick="copyGuestLink(this, decodeURIComponent('${encodeURIComponent(message)}'))" style="margin-right: 10px; background: #3498db; color: white; border: none; padding: 5px 10px; font-size: 12px; cursor: pointer; border-radius: 4px;"><i class="fas fa-copy"></i> Copy Msg</button>
                 <a href="${inviteLink}" target="_blank" style="margin-right: 10px; color: #1abc9c; text-decoration: none;"><i class="fas fa-link"></i> Link</a>
                 <a href="${waLink}" target="_blank" style="margin-right: 10px; color: #2ecc71; text-decoration: none;"><i class="fab fa-whatsapp"></i> Kirim WA</a>
                 <button onclick="deleteGuest(${index})" style="background: red; color: white; border: none; padding: 5px 10px; font-size: 12px; cursor: pointer; border-radius: 4px;"><i class="fas fa-trash"></i></button>
